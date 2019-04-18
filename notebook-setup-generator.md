@@ -57,22 +57,37 @@ space for a long time, I don't run as an administrator on my machine, so adding 
 
 You will need to grab a copy of the "setup" folder from the GitHub repository referenced in 
 [[1]](https://towardsdatascience.com/set-your-jupyter-notebook-up-right-with-this-extension-24921838a332),
-which is [here](https://github.com/WillKoehrsen/Data-Analysis/tree/master/setup). You can find the path where the setup directory needs to go by running the notebook-template-generator notebook; if the 
-path does not exist it will show the path where it expects it.
+which is [here](https://github.com/WillKoehrsen/Data-Analysis/tree/master/setup). You can find the path where the setup 
+directory needs to go by running the notebook-template-generator notebook; if the 
+path does not exist it will show the path where it expects it. On my Mac using virtualenv, it ends up here:  
+      ```~/development/Python/Virtualenvs/py37/lib/python3.7/site-packages/jupyter_contrib_nbextensions/nbextensions/setup```  
+This is in my home directory because I used the "--user" option when I installed jupyter nbextensions.
+
+The GitHub repository for this article with notebook-template.ipynb and notebook-setup-generator.ipynb is 
+[here](https://github.com/jhurley13/notebook-template-generator.git).
 
 # Running
 
 Open both notebook-template.ipynb and notebook-setup-generator.ipynb with Jupyter. Edit notebook-template.ipynb
 to contain whatever you would like in a basic Jupyter notebook. Under the File menu, choose "Download as..." and pick 
-"Python (.py)". On macOS, this will be saved as notebook-template.py.html in the ~/Downloads directory.
+"Python (.py)". On macOS, this will be saved as notebook-template.py.html in the ~/Downloads directory. 
+
+Next, go to
+_notebook-setup-generator.ipynb_ and select _Run All_ from the _Cell_ menu. If all goes well, it will ask you if you
+would like to overwrite the existing _setup/main.js_ file. The next time you create a new Jupyter notebook, it will
+be populated with a fresh copy of the cells from your version of _notebook-template.ipynb_.
 
 # Additional Notes
 
 I have tested this on macOS 10.14.3 with Python 3.7.2 in a virtual environment. The parser in _generate_setup_javascript()_
 is very basic, so it's possible that complicated notebook-template.ipynb files will not be parsed correctly.
 
+In Koehrsen's original Javascript function _promptName_, it checks to see if the new notebook is called "Untitled"; if
+so, it prompts you to rename it. I have that commented out in the _js_postamble_ string in _notebook-setup-generator.ipynb_
+as it is painful when debugging your template, but feel free to re-enable it when you are happy with your template.
+
 # Tags
-Jupyter Notebook, Productivity, Towards Data Science
+Jupyter Notebook, Productivity, Data Science, Towards Data Science
 
 # References
 
