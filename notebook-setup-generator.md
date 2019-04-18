@@ -1,5 +1,5 @@
 # Create a template for your Jupyter Notebooks
-## Start your data science notebook easily <<<<
+## Quick starts for your data science investigations
 
 In a nicely written 
 article _Set Your Jupyter Notebook up Right with this Extension_
@@ -25,8 +25,12 @@ _Cookiecutter Data Science_
 [[3]](http://drivendata.github.io/cookiecutter-data-science/) 
 that details a helpful organization for Data Science projects. 
 
-In my particular case, the notebook template that I use expands on both [[1]] and [[3]], and adds in some things
-that I know I need to do but are often too lazy to add in to a one-off notebook (I'm talking about you,
+In my particular case, the notebook template that I use expands on both 
+[[1]](https://towardsdatascience.com/set-your-jupyter-notebook-up-right-with-this-extension-24921838a332)
+and 
+[[3]](http://drivendata.github.io/cookiecutter-data-science/). 
+It adds in some code
+that I know I should include but am often too lazy to add in to a one-off notebook (I'm talking about you,
 unittest!) Too many times I 
 have started a project that I thought I would only use once, but ended up using multiple times, or expanded
 the project beyond what I initially envisioned. To avoid an unruly mess, it helps me to have some
@@ -38,10 +42,23 @@ For any template notebook more than a few lines, there is a good chance of intro
 into the javascript file.
 
 This article (and the code in the corresponding github repository) simplifies this process
- by (semi-)automatically generating the main.js file from a template Jupyter notebook.
+ by (semi-)automatically generating the main.js file from a template Jupyter notebook. It is only semi-automatic as
+ you must manually save your template as a .py file before running the code in _notebook-template-generator.ipynb_ 
+ with Jupyter.
 
-# notebook-template-generator
-Create Javascript used by Jupyter nbextensions to create new notebooks
+# Prerequisites
+If you don’t yet have Jupyter Extensions, check out this article:
+[[2]](https://towardsdatascience.com/jupyter-notebook-extensions-517fa69d2231)
+ or just run the following 
+code in a command prompt:   
+      ```pip install jupyter_contrib_nbextensions && jupyter contrib nbextensions install --user```  
+and then start a new notebook server and navigate to the extensions tab). Having worked in the security
+space for a long time, I don't run as an administrator on my machine, so adding '--user' is necessary, at least in my case.
+
+You will need to grab a copy of the "setup" folder from the GitHub repository referenced in 
+[[1]](https://towardsdatascience.com/set-your-jupyter-notebook-up-right-with-this-extension-24921838a332),
+which is [here](https://github.com/WillKoehrsen/Data-Analysis/tree/master/setup). You can find the path where the setup directory needs to go by running the notebook-template-generator notebook; if the 
+path does not exist it will show the path where it expects it.
 
 # Running
 
@@ -49,42 +66,10 @@ Open both notebook-template.ipynb and notebook-setup-generator.ipynb with Jupyte
 to contain whatever you would like in a basic Jupyter notebook. Under the File menu, choose "Download as..." and pick 
 "Python (.py)". On macOS, this will be saved as notebook-template.py.html in the ~/Downloads directory.
 
-# Pre-requisites
-If you don’t yet have Jupyter Extensions, check out this article or just run the following 
-code in a command prompt: 
-```pip install jupyter_contrib_nbextensions && jupyter contrib nbextensions install --user```
-and then start a new notebook server and navigate to the extensions tab). Having worked in the security
-space for a long time, I don't run as an administrator on my machine, so adding '--user' is necessary.
-
-You will need to grab a copy of the "setup" folder from the GitHub repository referenced in [[1]],
-which is [here](https://github.com/WillKoehrsen/Data-Analysis/tree/master/setup). 
-
-You can find the path where the setup file needs to go by opening the xx notebook
-
 # Additional Notes
 
-I have tested this on macOS 10.14.3 with Python 3.7.2 in a virtual environment.
-
-# Photos
-https://unsplash.com/photos/T-cIpXdef6Y Batik Stamp  
-https://unsplash.com/photos/aaJoT7YC3U4  
-https://unsplash.com/photos/XmE8bN9AE5I  
-https://unsplash.com/photos/JCxwEFcB62A Madelines  
-  
-
-# References
-
-
-https://towardsdatascience.com/how-to-automatically-import-your-favorite-libraries-into-ipython-or-a-jupyter-notebook-9c69d89aa343  
-	Useful stuff from William Koehrsen
-
-https://pbpython.com/notebook-process.html  
-http://drivendata.github.io/cookiecutter-data-science/
-
-For your reference, please respect this format:  
-[X] N. Name, Title (Year), source  
-For example, your first reference should look like this:  
-[1] A. Pesah, A. Wehenkel and G. Louppe, Recurrent Machines for Likelihood-Free Inference (2018), NeurIPS 2018 Workshop on Meta-Learning  
+I have tested this on macOS 10.14.3 with Python 3.7.2 in a virtual environment. The parser in _generate_setup_javascript()_
+is very basic, so it's possible that complicated notebook-template.ipynb files will not be parsed correctly.
 
 # Tags
 Jupyter Notebook, Productivity, Towards Data Science
